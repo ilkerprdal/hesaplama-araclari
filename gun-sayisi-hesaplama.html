@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>İki Tarih Arası Gün Sayısı Hesaplama</title>
+<meta name="description" content="Başlangıç ve bitiş tarihi arasındaki gün, hafta ve ay sayısını hesaplayın.">
+<link rel="canonical" href="https://ilkerprdal.github.io/hesaplama-araclari/gun-sayisi-hesaplama.html">
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<header><a href="index.html">📊 Hesaplama Araçları</a></header>
+<nav>
+  <a href="index.html">Ana Sayfa</a>
+  <a href="kira-artis-hesaplama.html">Kira Artış</a>
+      <a href="kidem-tazminati-hesaplama.html">Kıdem Tazminatı</a>
+      <a href="yillik-izin-hesaplama.html">Yıllık İzin</a>
+      <a href="kredi-taksit-hesaplama.html">Kredi Taksit</a>
+      <a href="gun-sayisi-hesaplama.html">Gün Sayısı</a>
+</nav>
+<main>
+<h1>İki Tarih Arası Gün Sayısı Hesaplama</h1>
+<p class="ozet">Başlangıç ve bitiş tarihi girerek aradaki gün, hafta ve ay sayısını öğrenin.</p>
+<div class="hesaplayici">
+  <label for="baslangic">Başlangıç Tarihi</label>
+  <input type="date" id="baslangic">
+  <label for="bitis">Bitiş Tarihi</label>
+  <input type="date" id="bitis">
+  <button onclick="hesapla()">Hesapla</button>
+  <div class="sonuc" id="sonuc"></div>
+</div>
+<div class="icerik">
+<h2>Nerelerde kullanılır?</h2>
+<p>İzin süresi, deneme süresi, kira sözleşmesi bitiş hesaplamaları, proje teslim tarihleri
+ve daha fazlası için pratik bir araçtır.</p>
+</div>
+<script>
+function hesapla() {
+  const b = new Date(document.getElementById('baslangic').value);
+  const s = new Date(document.getElementById('bitis').value);
+  const el = document.getElementById('sonuc');
+  if (isNaN(b) || isNaN(s)) { el.style.display = 'block'; el.innerHTML = 'Lütfen iki tarihi de seçin.'; return; }
+  const farkMs = s - b;
+  const gun = Math.round(farkMs / (1000 * 60 * 60 * 24));
+  el.style.display = 'block';
+  el.innerHTML = `Toplam: <b>${gun} gün</b> (${(gun / 7).toFixed(1)} hafta, ${(gun / 30.44).toFixed(1)} ay)`;
+}
+</script>
+
+</main>
+<footer>
+  © 2026 Hesaplama Araçları — Bilgilendirme amaçlıdır, resmi işlemler için ilgili kurum/uzmana danışın.
+</footer>
+</body>
+</html>

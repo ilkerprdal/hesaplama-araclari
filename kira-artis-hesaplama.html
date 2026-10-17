@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kira Artış Oranı Hesaplama — Yeni Kira Bedeli Hesapla</title>
+<meta name="description" content="Eski kira bedeli ve artış oranını girin, yeni kira bedelini anında öğrenin.">
+<link rel="canonical" href="https://ilkerprdal.github.io/hesaplama-araclari/kira-artis-hesaplama.html">
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<header><a href="index.html">📊 Hesaplama Araçları</a></header>
+<nav>
+  <a href="index.html">Ana Sayfa</a>
+  <a href="kira-artis-hesaplama.html">Kira Artış</a>
+      <a href="kidem-tazminati-hesaplama.html">Kıdem Tazminatı</a>
+      <a href="yillik-izin-hesaplama.html">Yıllık İzin</a>
+      <a href="kredi-taksit-hesaplama.html">Kredi Taksit</a>
+      <a href="gun-sayisi-hesaplama.html">Gün Sayısı</a>
+</nav>
+<main>
+<h1>Kira Artış Oranı Hesaplama</h1>
+<p class="ozet">Eski kira bedelinizi ve uygulanacak artış oranını girerek yeni kira bedelini
+anında hesaplayın.</p>
+<div class="hesaplayici">
+  <label for="eski">Eski Kira Bedeli (₺)</label>
+  <input type="number" id="eski" placeholder="Örn: 15000">
+  <label for="oran">Artış Oranı (%)</label>
+  <input type="number" id="oran" placeholder="Örn: 25" step="0.01">
+  <button onclick="hesapla()">Hesapla</button>
+  <div class="sonuc" id="sonuc"></div>
+</div>
+<div class="icerik">
+<h2>Formül</h2>
+<p>Yeni Kira = Eski Kira × (1 + Artış Oranı / 100). Artış oranı olarak genellikle son 12 aylık
+TÜİK Tüketici Fiyat Endeksi (TÜFE) ortalaması veya sözleşmede belirtilen oran kullanılır;
+güncel oranı TÜİK'in resmi sitesinden kontrol edebilirsiniz.</p>
+<p class="uyari">Bu araç yalnızca matematiksel hesaplama yapar; yasal kira artış sınırlamaları
+dönem dönem değişebileceğinden, bağlayıcı işlemler öncesi güncel mevzuatı kontrol edin.</p>
+</div>
+<script>
+function hesapla() {
+  const eski = parseFloat(document.getElementById('eski').value) || 0;
+  const oran = parseFloat(document.getElementById('oran').value) || 0;
+  const yeni = eski * (1 + oran / 100);
+  const fark = yeni - eski;
+  const el = document.getElementById('sonuc');
+  el.style.display = 'block';
+  el.innerHTML = `Yeni Kira Bedeli: <b>${yeni.toLocaleString('tr-TR', {maximumFractionDigits: 2})} ₺</b>` +
+    `<br>Artış Tutarı: ${fark.toLocaleString('tr-TR', {maximumFractionDigits: 2})} ₺`;
+}
+</script>
+
+</main>
+<footer>
+  © 2026 Hesaplama Araçları — Bilgilendirme amaçlıdır, resmi işlemler için ilgili kurum/uzmana danışın.
+</footer>
+</body>
+</html>

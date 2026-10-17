@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ilkerprdal.github.io/hesaplama-araclari/sitemap.xml

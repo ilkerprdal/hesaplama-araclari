@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yıllık İzin Hesaplama — Kıdeme Göre Kaç Gün İzin Hakkım Var?</title>
+<meta name="description" content="4857 sayılı İş Kanunu'na göre kıdeme ve yaşa göre yıllık ücretli izin hesaplama.">
+<link rel="canonical" href="https://ilkerprdal.github.io/hesaplama-araclari/yillik-izin-hesaplama.html">
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<header><a href="index.html">📊 Hesaplama Araçları</a></header>
+<nav>
+  <a href="index.html">Ana Sayfa</a>
+  <a href="kira-artis-hesaplama.html">Kira Artış</a>
+      <a href="kidem-tazminati-hesaplama.html">Kıdem Tazminatı</a>
+      <a href="yillik-izin-hesaplama.html">Yıllık İzin</a>
+      <a href="kredi-taksit-hesaplama.html">Kredi Taksit</a>
+      <a href="gun-sayisi-hesaplama.html">Gün Sayısı</a>
+</nav>
+<main>
+<h1>Yıllık Ücretli İzin Hesaplama</h1>
+<p class="ozet">Kıdeminize göre yasal yıllık ücretli izin hak edişinizi öğrenin (4857 sayılı
+İş Kanunu md. 53).</p>
+<div class="hesaplayici">
+  <label for="kidem">Toplam Kıdem (Yıl)</label>
+  <input type="number" id="kidem" placeholder="Örn: 7">
+  <label for="yas">Yaşınız</label>
+  <input type="number" id="yas" placeholder="Örn: 30">
+  <button onclick="hesapla()">Hesapla</button>
+  <div class="sonuc" id="sonuc"></div>
+</div>
+<div class="icerik">
+<h2>Yasal Kademeler (İş Kanunu md. 53)</h2>
+<ul>
+  <li>1 - 5 yıl (5 dahil): <b>14 gün</b></li>
+  <li>5 yıldan fazla - 15 yıldan az: <b>20 gün</b></li>
+  <li>15 yıl ve üzeri: <b>26 gün</b></li>
+  <li>18 yaşından küçük veya 50 yaşından büyük çalışanlar: en az <b>20 gün</b></li>
+</ul>
+<p class="uyari">İş sözleşmesi veya toplu iş sözleşmesiyle bu süreler artırılabilir, azaltılamaz.</p>
+</div>
+<script>
+function hesapla() {
+  const kidem = parseFloat(document.getElementById('kidem').value) || 0;
+  const yas = parseFloat(document.getElementById('yas').value) || 0;
+  let gun;
+  if (kidem <= 5) gun = 14;
+  else if (kidem <= 15) gun = 20;
+  else gun = 26;
+  if ((yas > 0 && yas < 18) || yas > 50) gun = Math.max(gun, 20);
+  const el = document.getElementById('sonuc');
+  el.style.display = 'block';
+  el.innerHTML = `Yasal Asgari Yıllık İzin Hakkınız: <b>${gun} gün</b>`;
+}
+</script>
+
+</main>
+<footer>
+  © 2026 Hesaplama Araçları — Bilgilendirme amaçlıdır, resmi işlemler için ilgili kurum/uzmana danışın.
+</footer>
+</body>
+</html>

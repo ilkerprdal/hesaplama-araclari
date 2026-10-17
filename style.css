@@ -1,0 +1,101 @@
+:root {
+  --mor: #6c5ce7;
+  --mor-acik: #e8e4fb;
+  --yazi: #2d2d2d;
+  --gri: #6b6b6b;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  margin: 0;
+  color: var(--yazi);
+  background: #fafafa;
+  line-height: 1.6;
+}
+header {
+  background: var(--mor);
+  color: #fff;
+  padding: 18px 20px;
+}
+header a { color: #fff; text-decoration: none; font-weight: 700; font-size: 20px; }
+nav { background: #fff; border-bottom: 1px solid #eee; padding: 10px 20px; }
+nav a { color: var(--mor); text-decoration: none; margin-right: 16px; font-size: 14px; }
+main { max-width: 760px; margin: 0 auto; padding: 24px 20px 60px; }
+h1 { font-size: 26px; margin-bottom: 6px; }
+.ozet { color: var(--gri); margin-bottom: 20px; }
+.hesaplayici {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+label { display: block; font-weight: 600; margin: 12px 0 6px; font-size: 14px; }
+input, select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 15px;
+}
+button {
+  margin-top: 16px;
+  background: var(--mor);
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+button:hover { background: #5a4bd4; }
+.sonuc {
+  margin-top: 16px;
+  padding: 14px;
+  background: var(--mor-acik);
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  display: none;
+}
+.icerik { margin-top: 30px; }
+.icerik h2 { font-size: 19px; margin-top: 28px; }
+.kart-liste { display: grid; gap: 14px; }
+.kart {
+  display: block;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 16px 18px;
+  text-decoration: none;
+  color: var(--yazi);
+}
+.kart:hover { border-color: var(--mor); }
+.kart b { color: var(--mor); font-size: 17px; }
+.kart p { margin: 4px 0 0; color: var(--gri); font-size: 14px; }
+.uyari {
+  font-size: 13px;
+  color: var(--gri);
+  border-left: 3px solid var(--mor-acik);
+  padding-left: 10px;
+  margin-top: 20px;
+}
+footer {
+  text-align: center;
+  color: var(--gri);
+  font-size: 13px;
+  padding: 20px;
+  border-top: 1px solid #eee;
+}
+.reklam-alani {
+  margin: 20px 0;
+  min-height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #bbb;
+  font-size: 12px;
+  border: 1px dashed #ddd;
+  border-radius: 8px;
+}

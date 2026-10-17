@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kıdem Tazminatı Hesaplama 2026 — Güncel Formül</title>
+<meta name="description" content="Brüt maaş ve çalışma süresine göre kıdem tazminatı hesaplama aracı.">
+<link rel="canonical" href="https://ilkerprdal.github.io/hesaplama-araclari/kidem-tazminati-hesaplama.html">
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<header><a href="index.html">📊 Hesaplama Araçları</a></header>
+<nav>
+  <a href="index.html">Ana Sayfa</a>
+  <a href="kira-artis-hesaplama.html">Kira Artış</a>
+      <a href="kidem-tazminati-hesaplama.html">Kıdem Tazminatı</a>
+      <a href="yillik-izin-hesaplama.html">Yıllık İzin</a>
+      <a href="kredi-taksit-hesaplama.html">Kredi Taksit</a>
+      <a href="gun-sayisi-hesaplama.html">Gün Sayısı</a>
+</nav>
+<main>
+<h1>Kıdem Tazminatı Hesaplama</h1>
+<p class="ozet">Brüt maaşınızı ve çalışma sürenizi girerek kıdem tazminatınızı hesaplayın.</p>
+<div class="hesaplayici">
+  <label for="brut">Son Brüt Maaş (₺)</label>
+  <input type="number" id="brut" placeholder="Örn: 35000">
+  <label for="yil">Çalışma Süresi (Tam Yıl)</label>
+  <input type="number" id="yil" placeholder="Örn: 5">
+  <label for="ay">Kalan Ay (0-11)</label>
+  <input type="number" id="ay" placeholder="Örn: 6" max="11" min="0">
+  <label for="tavan">Kıdem Tazminatı Tavanı (₺, isteğe bağlı — boş bırakılırsa uygulanmaz)</label>
+  <input type="number" id="tavan" placeholder="Güncel tavanı Çalışma Bakanlığı'ndan kontrol edin">
+  <button onclick="hesapla()">Hesapla</button>
+  <div class="sonuc" id="sonuc"></div>
+</div>
+<div class="icerik">
+<h2>Formül</h2>
+<p>Kıdem Tazminatı = (Toplam Çalışma Yılı + Ay/12) × Son Brüt Maaş. Devlet her yıl bir
+"kıdem tazminatı tavanı" belirler; brüt maaşınız bu tavanı aşıyorsa hesaplama tavan üzerinden
+yapılır. Tavan, memur maaş katsayılarına bağlı olarak yıl içinde değişebilir; güncel tutarı
+Çalışma ve Sosyal Güvenlik Bakanlığı duyurularından teyit edin.</p>
+<p class="uyari">Bu hesaplama 4857 sayılı İş Kanunu'ndaki genel formülü uygular; ihbar süresi,
+kümülatif vergi dilimi veya özel sözleşme hükümleri sonucu değiştirebilir.</p>
+</div>
+<script>
+function hesapla() {
+  const brut = parseFloat(document.getElementById('brut').value) || 0;
+  const yil = parseFloat(document.getElementById('yil').value) || 0;
+  const ay = parseFloat(document.getElementById('ay').value) || 0;
+  const tavan = parseFloat(document.getElementById('tavan').value) || 0;
+  const taban = tavan > 0 ? Math.min(brut, tavan) : brut;
+  const toplamYil = yil + ay / 12;
+  const tutar = toplamYil * taban;
+  const el = document.getElementById('sonuc');
+  el.style.display = 'block';
+  el.innerHTML = `Tahmini Kıdem Tazminatı: <b>${tutar.toLocaleString('tr-TR', {maximumFractionDigits: 2})} ₺</b>` +
+    (tavan > 0 && brut > tavan ? '<br><small>Brüt maaşınız tavanı aştığı için tavan tutarı üzerinden hesaplandı.</small>' : '');
+}
+</script>
+
+</main>
+<footer>
+  © 2026 Hesaplama Araçları — Bilgilendirme amaçlıdır, resmi işlemler için ilgili kurum/uzmana danışın.
+</footer>
+</body>
+</html>

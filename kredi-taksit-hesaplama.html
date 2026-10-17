@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kredi Taksit Hesaplama — Aylık Taksit Tutarını Hesapla</title>
+<meta name="description" content="Anapara, faiz oranı ve vadeye göre eşit taksitli kredi hesaplama aracı.">
+<link rel="canonical" href="https://ilkerprdal.github.io/hesaplama-araclari/kredi-taksit-hesaplama.html">
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<header><a href="index.html">📊 Hesaplama Araçları</a></header>
+<nav>
+  <a href="index.html">Ana Sayfa</a>
+  <a href="kira-artis-hesaplama.html">Kira Artış</a>
+      <a href="kidem-tazminati-hesaplama.html">Kıdem Tazminatı</a>
+      <a href="yillik-izin-hesaplama.html">Yıllık İzin</a>
+      <a href="kredi-taksit-hesaplama.html">Kredi Taksit</a>
+      <a href="gun-sayisi-hesaplama.html">Gün Sayısı</a>
+</nav>
+<main>
+<h1>Kredi / Taksit Hesaplama</h1>
+<p class="ozet">Anapara, aylık faiz oranı ve vade girerek sabit taksit tutarını hesaplayın
+(anüite formülü).</p>
+<div class="hesaplayici">
+  <label for="anapara">Anapara (₺)</label>
+  <input type="number" id="anapara" placeholder="Örn: 100000">
+  <label for="faiz">Aylık Faiz Oranı (%)</label>
+  <input type="number" id="faiz" placeholder="Örn: 3.5" step="0.01">
+  <label for="vade">Vade (Ay)</label>
+  <input type="number" id="vade" placeholder="Örn: 12">
+  <button onclick="hesapla()">Hesapla</button>
+  <div class="sonuc" id="sonuc"></div>
+</div>
+<div class="icerik">
+<h2>Formül (Anüite / Eşit Taksit)</h2>
+<p>Taksit = Anapara × [r × (1+r)^n] / [(1+r)^n - 1], burada r = aylık faiz oranı (ondalık),
+n = vade (ay). Bu, bankaların eşit taksitli kredilerde kullandığı standart formüldür;
+BSMV/KKDF gibi vergiler bankaya göre değişebileceğinden gerçek taksit tutarı farklılık
+gösterebilir.</p>
+</div>
+<script>
+function hesapla() {
+  const p = parseFloat(document.getElementById('anapara').value) || 0;
+  const r = (parseFloat(document.getElementById('faiz').value) || 0) / 100;
+  const n = parseFloat(document.getElementById('vade').value) || 0;
+  let taksit = 0, toplam = 0;
+  if (r === 0) {
+    taksit = n > 0 ? p / n : 0;
+  } else {
+    taksit = p * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+  }
+  toplam = taksit * n;
+  const el = document.getElementById('sonuc');
+  el.style.display = 'block';
+  el.innerHTML = `Aylık Taksit: <b>${taksit.toLocaleString('tr-TR', {maximumFractionDigits: 2})} ₺</b>` +
+    `<br>Toplam Geri Ödeme: ${toplam.toLocaleString('tr-TR', {maximumFractionDigits: 2})} ₺`;
+}
+</script>
+
+</main>
+<footer>
+  © 2026 Hesaplama Araçları — Bilgilendirme amaçlıdır, resmi işlemler için ilgili kurum/uzmana danışın.
+</footer>
+</body>
+</html>
